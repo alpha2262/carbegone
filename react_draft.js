@@ -1,6 +1,3 @@
-// pull in react cdns, add DOM, try rendering basic functionality? Add in API data via rails?
-
-
 var React = require('react');
 
 var List = React.createClass({
