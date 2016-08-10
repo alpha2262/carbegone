@@ -5,25 +5,30 @@
   <!-- <script type ="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
   <!-- <script type ="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARcbouYh7djP2yP-gdGqNpk4PW61B8E2E&callback=initialize"></script> -->
   <!-- <script type ="text/javascript" src="./map_directions.js"></script> -->
+  <!-- Compiled and minified CSS -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="stylesheet.css"></sctipt>
 
 </head>
 <body>
 
 <h1>Time2Go</h1>
-  <br />
 
 <div>
   <!-- add in IP/cell tower auto detect -->
   <input id="origin" type="text" placeholder="Where ya at?" value="General Assembly, Washington, DC">
 </div>
-<br />
 
 <div>
   <input id="destination" type="text" placeholder="Where to?" value="Bethesda, MD">
-  <input id="zoom-to-area" type="button" value="Let's go">
+  <input id="mapit" type="button" class="waves-effect waves-light btn" value="Let's go">
 </div>
-<br />
 
 
 <!-- take this section out and replace with onclicks for divs -->
@@ -35,11 +40,26 @@
 </select>
 
 
-<div id="walk" value="WALKING">Walk</div>
-<div value="BICYCLING" id="option">Bike</div>
-<div value="BICYCLING" id="option">Bikeshare</div>
-<div value="DRIVING" id="option">Drive</div>
-<div value="TRANSIT" id="option">Rideshare</div>
+<div class="fixed-action-btn vertical click-to-toggle" style="bottom: 5px; right: 24px;">
+    <a class="btn-floating btn-large red">
+      <i class="material-icons">add</i>
+    </a>
+    <ul>
+      <li><a id="walk!" class="btn-floating red"><i class="material-icons">directions_walk</i></a></li>
+      <li><a id="bike!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a></li>
+      <li><a id="bike share!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a></li>
+      <li><a id="metro!" class="btn-floating green"><i class="material-icons">train</i></a></li>
+      <li><a id="uber!" class="btn-floating blue"><i class="material-icons">event_seat</i></a></li>
+      <li><a id="drive" class="btn-floating purple"><i class="material-icons">drive_eta</i></a></li>
+    </ul>
+  </div>
+
+
+<div id="walking" value="WALKING" class="option">Walk</div>
+<div value="BICYCLING" class="option">Bike</div>
+<div value="BICYCLING" class="option">Bikeshare</div>
+<div value="DRIVING" class="option">Drive</div>
+<div value="TRANSIT" class="option">Rideshare</div>
 
 <!-- <div id="right-panel"></div> -->
 <div id="map" style="float:left; width:70%; height:100%"></div>
@@ -65,42 +85,12 @@
         });
       }
 
-      document.getElementById('origin').addEventListener('click', function() {
-          zoomToArea();
+      document.getElementById('mapit').addEventListener('click', function() {
+          displayDirections();
         });
-        document.getElementById('walk').addEventListener('click', function() {
-              modeOptionStyle();
-          });
-
-        function modeOptionStyle(){
-          console.log("div clicked")
-        };
-
-        function zoomToArea() {
-        // Initialize the geocoder.
-        var geocoder = new google.maps.Geocoder();
-        // Get the address or place that the user entered.
-        var address = document.getElementById('origin').value;
-        // Make sure the address isn't blank.
-        if (address == '') {
-          window.alert("Please submit an address. Currently you're going nowhere (directionally-speaking, not in life)");
-        } else {
-          // Geocode the address/area entered to get the center. Then, center the map
-          // on it and zoom in
-          geocoder.geocode(
-            { address: address},
-            function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                map.setZoom(15);
-              } else {
-                window.alert('We could not find that location - try entering a more' +
-                    ' specific place.');
-              }
-            });
-          }
-        }
-
+        document.getElementById('walking').addEventListener('click', function() {
+              displayDirections();
+        });
 
 
 

@@ -27,11 +27,16 @@ Wednesday:
 * styling of front end, adding icons?
 * next API, other features
 * hide API key for deployment?
-* make site responsive?
-  * flexbox
+* flexbox
 * create testing suites?
-
 * add toggles for routing options
 * get directions in view using DirectionsStep and DirectionsRenderer
 * change colors for each route
 * remove bike map overlay
+
+Thursday:
+
+Friday:
+* add IP detection
+* make site responsive?
+* deploy as mobile app?
