@@ -32,3 +32,12 @@
        total = total / 1000;
        document.getElementById('total').innerHTML = total + ' km';
      }
+
+
+     <!-- take this section out and replace with onclicks for divs -->
+     <select id="mode" onchange="displayDirections();">
+       <option value="DRIVING">drive</option>
+       <option value="WALKING">walk</option>
+       <option value="BICYCLING">bike</option>
+       <option value="TRANSIT">transit ride</option>
+     </select>

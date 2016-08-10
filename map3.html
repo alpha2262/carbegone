@@ -27,39 +27,19 @@
 
 <div>
   <input id="destination" type="text" placeholder="Where to?" value="Bethesda, MD">
-  <input id="mapit" type="button" class="waves-effect waves-light btn" value="Let's go">
+  <!-- <input id="mapit" type="button" class="waves-effect waves-light btn" value="Let's go"> -->
 </div>
 
-
-<!-- take this section out and replace with onclicks for divs -->
-<select id="mode" onchange="displayDirections();">
-  <option value="DRIVING">drive</option>
-  <option value="WALKING">walk</option>
-  <option value="BICYCLING">bike</option>
-  <option value="TRANSIT">transit ride</option>
-</select>
-
-
-<div class="fixed-action-btn vertical click-to-toggle" style="bottom: 5px; right: 24px;">
-    <a class="btn-floating btn-large red">
-      <i class="material-icons">add</i>
-    </a>
-    <ul>
-      <li><a id="walk!" class="btn-floating red"><i class="material-icons">directions_walk</i></a></li>
-      <li><a id="bike!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a></li>
-      <li><a id="bike share!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a></li>
-      <li><a id="metro!" class="btn-floating green"><i class="material-icons">train</i></a></li>
-      <li><a id="uber!" class="btn-floating blue"><i class="material-icons">event_seat</i></a></li>
-      <li><a id="drive" class="btn-floating purple"><i class="material-icons">drive_eta</i></a></li>
-    </ul>
-  </div>
-
-
-<div id="walking" value="WALKING" class="option">Walk</div>
-<div value="BICYCLING" class="option">Bike</div>
-<div value="BICYCLING" class="option">Bikeshare</div>
-<div value="DRIVING" class="option">Drive</div>
-<div value="TRANSIT" class="option">Rideshare</div>
+<div>
+  <ul>
+    <a id="walk!" class="btn-floating red"><i class="material-icons">directions_walk</i></a>
+    <a id="bike!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a>
+    <a id="bikeshare!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a>
+    <a id="metro!" class="btn-floating green"><i class="material-icons">train</i></a>
+    <a id="uber!" class="btn-floating blue"><i class="material-icons">event_seat</i></a>
+    <a id="drive!" class="btn-floating purple"><i class="material-icons">drive_eta</i></a>
+  </ul>
+</div>
 
 <!-- <div id="right-panel"></div> -->
 <div id="map" style="float:left; width:70%; height:100%"></div>
@@ -85,16 +65,42 @@
         });
       }
 
-      document.getElementById('mapit').addEventListener('click', function() {
-          displayDirections();
+      // document.getElementById('mapit').addEventListener('click', function() {
+      //     displayDirections();
+      //   });
+        document.getElementById('walk!').addEventListener('click', function() {
+              var mode = "WALKING"
+              displayDirections(origin, mode);
+              console.log(mode + " selected")
         });
-        document.getElementById('walking').addEventListener('click', function() {
-              displayDirections();
+        document.getElementById('bike!').addEventListener('click', function() {
+              var mode = "BICYCLING"
+              displayDirections(origin, mode);
+              console.log(mode + " selected")
+        });
+        document.getElementById('bikeshare!').addEventListener('click', function() {
+              var mode = "BICYCLING"
+              displayDirections(origin, mode);
+              console.log(mode + " selected")
+        });
+        document.getElementById('metro!').addEventListener('click', function() {
+              var mode = "TRANSIT"
+              displayDirections(origin, mode);
+              console.log(mode + " selected")
+        });
+        document.getElementById('uber!').addEventListener('click', function() {
+              var mode = "DRIVING"
+              displayDirections(origin, mode);
+              console.log(mode + " selected")
+        });
+        document.getElementById('drive!').addEventListener('click', function() {
+              var mode = "DRIVING"
+              displayDirections(origin, mode);
+              console.log(mode + " selected")
         });
 
 
-
-        function displayDirections(origin) {
+        function displayDirections(origin, mode) {
           var directionsService = new google.maps.DirectionsService;
           // Get the destination address from the user entered value.
           var originAddress =
@@ -104,21 +110,21 @@
               console.log("origin: " + originAddress + "destination: " + destinationAddress)
 
           // Get mode again from the user entered value.
-          var mode = document.getElementById('mode').value;
+          // var mode = document.getElementById('mode').value;
             console.log("console log of mode: " + mode)
 
           var strokeColorByMode = ''
 
             if (mode === "DRIVING"){
-              strokeColorByMode = 'green'
+              strokeColorByMode = 'purple'
             }
             else if (mode === "WALKING") {
-              strokeColorByMode = 'blue'
-            }
-            else if (mode === "TRANSIT") {
               strokeColorByMode = 'red'
             }
-            else {strokeColorByMode = 'yellow'}
+            else if (mode === "TRANSIT") {
+              strokeColorByMode = 'green'
+            }
+            else {strokeColorByMode = 'orange'}
 
           directionsService.route({
             // The origin is the passed in marker's position.
