@@ -30,3 +30,8 @@ Wednesday:
 * make site responsive?
   * flexbox
 * create testing suites?
+
+* add toggles for routing options
+* get directions in view using DirectionsStep and DirectionsRenderer
+* change colors for each route
+* remove bike map overlay

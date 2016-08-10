@@ -1,77 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Time2Go</title>
   <!-- <script type ="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
   <!-- <script type ="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARcbouYh7djP2yP-gdGqNpk4PW61B8E2E&callback=initialize"></script> -->
   <!-- <script type ="text/javascript" src="./map_directions.js"></script> -->
-
-  <style>
-    html,
-    body {
-      font-family: Arial, sans-serif;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    #map {
-      height: 50%;
-    }
-    #option {
-      margin: 0;
-      padding: 10px;
-      background-color: lemonchiffon;
-      border-radius: 25px;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css"></sctipt>
 
 </head>
 <body>
 
 <h1>Time2Go</h1>
-<br />
+  <br />
 
 <div>
   <!-- add in IP/cell tower auto detect -->
-  <input id="zoom-to-area-text" type="text" placeholder="Enter your favorite area!">
-  <input id="zoom-to-area" type="button" value="Zoom">
+  <input id="origin" type="text" placeholder="Where ya at?" value="General Assembly, Washington, DC">
 </div>
+<br />
 
 <div>
-  <input id="destination" type="text" value="Bethesda, MD">
+  <input id="destination" type="text" placeholder="Where to?" value="Bethesda, MD">
+  <input id="zoom-to-area" type="button" value="Let's go">
 </div>
+<br />
 
 
-<div id="option" name="walk">Walk</div>
-<div id="option">Bike</div>
-<div id="option">Bikeshare</div>
-<div id="option">Drive</div>
-<div id="option">Rideshare</div>
-
-
-<div>
-<strong>Start: </strong>
-<select id="start" onchange="calcRoute();">
-  <option value="los angeles, ca">Los Angeles</option>
+<!-- take this section out and replace with onclicks for divs -->
+<select id="mode" onchange="displayDirections();">
+  <option value="DRIVING">drive</option>
+  <option value="WALKING">walk</option>
+  <option value="BICYCLING">bike</option>
+  <option value="TRANSIT">transit ride</option>
 </select>
-<strong>End: </strong>
-<select id="end" onchange="calcRoute();">
-  <option value="chicago, il">Chicago</option>
-</select>
-</div>
 
-<div>
-<strong>Mode of Travel: </strong>
-<select id="mode" onchange="calcRoute();">
-  <option value="DRIVING">Driving</option>
-  <option value="WALKING">Walking</option>
-  <option value="BICYCLING">Bicycling</option>
-  <option value="TRANSIT">Transit</option>
-</select>
-</div>
 
+<div id="walk" value="WALKING">Walk</div>
+<div value="BICYCLING" id="option">Bike</div>
+<div value="BICYCLING" id="option">Bikeshare</div>
+<div value="DRIVING" id="option">Drive</div>
+<div value="TRANSIT" id="option">Rideshare</div>
+
+<!-- <div id="right-panel"></div> -->
 <div id="map" style="float:left; width:70%; height:100%"></div>
 
-<!-- <div id="directionsPanel" style="float:right;width:30%;height 100%"></div> -->
+
+
 
     <script>
       var map;
@@ -91,10 +65,10 @@
         });
       }
 
-      document.getElementById('zoom-to-area').addEventListener('click', function() {
+      document.getElementById('origin').addEventListener('click', function() {
           zoomToArea();
         });
-        document.getElementById('option').addEventListener('click', function() {
+        document.getElementById('walk').addEventListener('click', function() {
               modeOptionStyle();
           });
 
@@ -106,7 +80,7 @@
         // Initialize the geocoder.
         var geocoder = new google.maps.Geocoder();
         // Get the address or place that the user entered.
-        var address = document.getElementById('zoom-to-area-text').value;
+        var address = document.getElementById('origin').value;
         // Make sure the address isn't blank.
         if (address == '') {
           window.alert("Please submit an address. Currently you're going nowhere (directionally-speaking, not in life)");
@@ -133,27 +107,44 @@
         function displayDirections(origin) {
           var directionsService = new google.maps.DirectionsService;
           // Get the destination address from the user entered value.
-          var origin = "Arlington, VA"
+          var originAddress =
+            document.getElementById('origin').value;
           var destinationAddress =
               document.getElementById('destination').value;
-              console.log("destinationAddress:"+document.getElementById('destination').value)
+              console.log("origin: " + originAddress + "destination: " + destinationAddress)
 
           // Get mode again from the user entered value.
           var mode = document.getElementById('mode').value;
+            console.log("console log of mode: " + mode)
+
+          var strokeColorByMode = ''
+
+            if (mode === "DRIVING"){
+              strokeColorByMode = 'green'
+            }
+            else if (mode === "WALKING") {
+              strokeColorByMode = 'blue'
+            }
+            else if (mode === "TRANSIT") {
+              strokeColorByMode = 'red'
+            }
+            else {strokeColorByMode = 'yellow'}
+
           directionsService.route({
             // The origin is the passed in marker's position.
-            origin: origin,
+            origin: originAddress,
             // The destination is user entered address.
             destination: destinationAddress,
             travelMode: google.maps.TravelMode[mode]
-          }, function(response, status) {
+            },
+          function(response, status) {
             if (status === google.maps.DirectionsStatus.OK) {
               var directionsDisplay = new google.maps.DirectionsRenderer({
                 map: map,
                 directions: response,
                 draggable: true,
                 polylineOptions: {
-                  strokeColor: 'green'
+                  strokeColor: strokeColorByMode
                 }
               });
             } else {
@@ -161,6 +152,22 @@
             }
           });
         }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+                var start = document.getElementById('origin').value;
+                var end = document.getElementById('destination').value;
+                directionsService.route({
+                  origin: start,
+                  destination: end,
+                  travelMode: 'DRIVING'
+                }, function(response, status) {
+                  if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                  } else {
+                    window.alert('Directions request failed due to ' + status);
+                  }
+                });
+              }
 
 
 
