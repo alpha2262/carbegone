@@ -26,18 +26,21 @@
 </div>
 
 <div>
-  <input id="destination" type="text" placeholder="Where to?" value="Bethesda, MD">
+  <input id="destination" type="text" placeholder="Where to?" value="Cleveland Park, DC">
   <!-- <input id="mapit" type="button" class="waves-effect waves-light btn" value="Let's go"> -->
 </div>
 
-<div>
+<!-- Add preferences for routing (weather, etc.) options here -->
+
+<div name="route options">
   <ul>
     <a id="walk!" class="btn-floating red"><i class="material-icons">directions_walk</i></a>
-    <a id="bike!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a>
-    <a id="bikeshare!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a>
+    <a id="bikeshare!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a>
+    <a id="bike!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a>
     <a id="metro!" class="btn-floating green"><i class="material-icons">train</i></a>
     <a id="uber!" class="btn-floating blue"><i class="material-icons">event_seat</i></a>
     <a id="drive!" class="btn-floating purple"><i class="material-icons">drive_eta</i></a>
+    <a id="info" class="btn-floating indigo "><i class="material-icons">info_outline</i></a>
   </ul>
 </div>
 
@@ -68,6 +71,7 @@
       // document.getElementById('mapit').addEventListener('click', function() {
       //     displayDirections();
       //   });
+
         document.getElementById('walk!').addEventListener('click', function() {
               var mode = "WALKING"
               displayDirections(origin, mode);
@@ -80,7 +84,8 @@
         });
         document.getElementById('bikeshare!').addEventListener('click', function() {
               var mode = "BICYCLING"
-              displayDirections(origin, mode);
+              var modePlus = "bikeshare"
+              displayDirections(origin, mode, modePlus);
               console.log(mode + " selected")
         });
         document.getElementById('metro!').addEventListener('click', function() {
@@ -90,7 +95,8 @@
         });
         document.getElementById('uber!').addEventListener('click', function() {
               var mode = "DRIVING"
-              displayDirections(origin, mode);
+              var modePlus = "uber"
+              displayDirections(origin, mode, modePlus);
               console.log(mode + " selected")
         });
         document.getElementById('drive!').addEventListener('click', function() {
@@ -98,9 +104,13 @@
               displayDirections(origin, mode);
               console.log(mode + " selected")
         });
+        // document.getElementById('drive!').addEventListener('click', function() {
+        //       clearDirections();
+        // directionDisplay.setMap(null);
+        // });
 
 
-        function displayDirections(origin, mode) {
+        function displayDirections(origin, mode, modePlus) {
           var directionsService = new google.maps.DirectionsService;
           // Get the destination address from the user entered value.
           var originAddress =
@@ -115,7 +125,10 @@
 
           var strokeColorByMode = ''
 
-            if (mode === "DRIVING"){
+            if (mode === "DRIVING" && modePlus === "uber"){
+              strokeColorByMode = 'blue'
+            }
+            else if (mode === "DRIVING"){
               strokeColorByMode = 'purple'
             }
             else if (mode === "WALKING") {
@@ -124,7 +137,12 @@
             else if (mode === "TRANSIT") {
               strokeColorByMode = 'green'
             }
-            else {strokeColorByMode = 'orange'}
+            else if (mode === "BICYCLING" && modePlus === "bikeshare") {
+              strokeColorByMode = 'yellow'
+            }
+            else if (mode == "BICYCLING"){
+              strokeColorByMode = 'orange'
+            }
 
           directionsService.route({
             // The origin is the passed in marker's position.
@@ -149,6 +167,7 @@
           });
         }
 
+        //not yet set up
         function calculateAndDisplayRoute(directionsService, directionsDisplay) {
                 var start = document.getElementById('origin').value;
                 var end = document.getElementById('destination').value;

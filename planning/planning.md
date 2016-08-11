@@ -35,6 +35,10 @@ Wednesday:
 * remove bike map overlay
 
 Thursday:
+* add routing directions
+* add directions calcs on time, etc.
+* segment out uber and bikeshare
+
 
 Friday:
 * add IP detection
