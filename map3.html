@@ -26,11 +26,11 @@
 </div>
 
 <div>
-  <input id="destination" type="text" placeholder="Where to?" value="Bethesda, MD">
+  <input id="destination" type="text" placeholder="Where to?" value="Cleveland Park, DC">
   <!-- <input id="mapit" type="button" class="waves-effect waves-light btn" value="Let's go"> -->
 </div>
 
-<div>
+<div name="route options">
   <ul>
     <a id="walk!" class="btn-floating red"><i class="material-icons">directions_walk</i></a>
     <a id="bike!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a>
@@ -38,6 +38,7 @@
     <a id="metro!" class="btn-floating green"><i class="material-icons">train</i></a>
     <a id="uber!" class="btn-floating blue"><i class="material-icons">event_seat</i></a>
     <a id="drive!" class="btn-floating purple"><i class="material-icons">drive_eta</i></a>
+    <a id="info" class="btn-floating indigo "><i class="material-icons">info_outline</i></a>
   </ul>
 </div>
 
@@ -68,6 +69,7 @@
       // document.getElementById('mapit').addEventListener('click', function() {
       //     displayDirections();
       //   });
+
         document.getElementById('walk!').addEventListener('click', function() {
               var mode = "WALKING"
               displayDirections(origin, mode);
@@ -98,6 +100,10 @@
               displayDirections(origin, mode);
               console.log(mode + " selected")
         });
+        // document.getElementById('drive!').addEventListener('click', function() {
+        //       clearDirections();
+        // directionDisplay.setMap(null);
+        // });
 
 
         function displayDirections(origin, mode) {
@@ -149,6 +155,7 @@
           });
         }
 
+        //not yet set up
         function calculateAndDisplayRoute(directionsService, directionsDisplay) {
                 var start = document.getElementById('origin').value;
                 var end = document.getElementById('destination').value;

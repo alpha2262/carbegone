@@ -30,11 +30,12 @@ Wednesday:
 * flexbox
 * create testing suites?
 * add toggles for routing options
-* get directions in view using DirectionsStep and DirectionsRenderer
 * change colors for each route
-* remove bike map overlay
 
 Thursday:
+* get directions in view using DirectionsStep and DirectionsRenderer
+* add time and distance
+* remove bike map overlay
 
 Friday:
 * add IP detection
