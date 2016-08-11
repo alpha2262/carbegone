@@ -13,12 +13,12 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css"></sctipt>
+  <link rel="stylesheet" type="text/css" href="stylesheet0.css"></sctipt>
 
 </head>
 <body>
 
-<h1>Time2Go</h1>
+<h6>Time2Go</h6>
 
 <div>
   <!-- add in IP/cell tower auto detect -->
@@ -45,7 +45,8 @@
 </div>
 
 <!-- <div id="right-panel"></div> -->
-<div id="map" style="float:left; width:70%; height:100%"></div>
+<div id="right-panel">I'm a right-panel div!</div>
+<div id="map"></div>
 
 
 
@@ -53,7 +54,8 @@
     <script>
       var map;
       function initMap() {
-
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
         // map style from Adam Krogh, https://snazzymaps.com/style/2/midnight-commander.
 
         var mapStyle = [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}
@@ -167,17 +169,27 @@
           });
         }
 
-        //not yet set up
         function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-                var start = document.getElementById('origin').value;
-                var end = document.getElementById('destination').value;
+                var originAddress = document.getElementById('origin').value;
+                var destinationAddress = document.getElementById('destination').value;
+                var directionsService = new google.maps.DirectionsService;
+                var directionsDisplay = new google.maps.DirectionsRenderer;
+
+                directionsDisplay.setMap(map);
+                directionsDisplay.setPanel(document.getElementById('right-panel'));
+
                 directionsService.route({
-                  origin: start,
-                  destination: end,
+                  origin: originAddress,
+                  destination: destinationAddress,
                   travelMode: 'DRIVING'
                 }, function(response, status) {
                   if (status === 'OK') {
                     directionsDisplay.setDirections(response);
+
+
+
+
+                    console.log("directions: " + response)
                   } else {
                     window.alert('Directions request failed due to ' + status);
                   }
