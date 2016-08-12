@@ -36,11 +36,12 @@ Wednesday:
 
 Thursday:
 * add routing directions
+* show most recent routing directions
 * add directions calcs on time, etc.
 * segment out uber and bikeshare
 
 
 Friday:
-* add IP detection
+* add IP detection?
 * make site responsive?
 * deploy as mobile app?
