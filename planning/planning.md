@@ -42,6 +42,12 @@ Thursday:
 
 
 Friday:
+* figure out right-side div css
+* find distance attribute and modify w/uber and bike share data
+* change top of step by step directions panel to name of mode
 * add IP detection?
 * make site responsive?
 * deploy as mobile app?
+
+Bugs/items to update:
+* When selecting same google transit mode, (drive versus uber) google will switch colors when clicking between the same mode. Clicking a new mode locks the last color in.

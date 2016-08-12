@@ -1,7 +1,7 @@
 html, body {
         height: 100%;
         margin: 0;
-        padding: 0;
+        padding: 15px;
       }
       #map {
         height: 100%;
@@ -54,16 +54,22 @@ html, body {
         box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
         display: none;
       }
-      /*@media print {
+      @media print {
         #map {
           height: 500px;
           margin: 0;
-        }*/
+        }
         #right-panel {
           float: none;
           width: auto;
         }
       }
+
+/*for testing out grab of span element 59 for directions time
+.adp-summary.span.jstcatche="59"{
+  color: red;
+}*/
+
 @media (max-width:600px){
   #right-panel{
     float: none;
