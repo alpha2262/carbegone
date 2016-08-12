@@ -13,12 +13,12 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css"></sctipt>
+  <link rel="stylesheet" type="text/css" href="stylesheet0.css"></script>
 
 </head>
 <body>
 
-<h1>Time2Go</h1>
+<h3>Time2Go</h3>
 
 <div>
   <!-- add in IP/cell tower auto detect -->
@@ -30,11 +30,16 @@
   <!-- <input id="mapit" type="button" class="waves-effect waves-light btn" value="Let's go"> -->
 </div>
 
+<<<<<<< HEAD
+=======
+<!-- Add preferences for routing (weather, etc.) options here -->
+
+>>>>>>> 23a22095bd5b393f656a633457803c75258d1a33
 <div name="route options">
   <ul>
     <a id="walk!" class="btn-floating red"><i class="material-icons">directions_walk</i></a>
-    <a id="bike!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a>
-    <a id="bikeshare!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a>
+    <a id="bikeshare!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a>
+    <a id="bike!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a>
     <a id="metro!" class="btn-floating green"><i class="material-icons">train</i></a>
     <a id="uber!" class="btn-floating blue"><i class="material-icons">event_seat</i></a>
     <a id="drive!" class="btn-floating purple"><i class="material-icons">drive_eta</i></a>
@@ -43,7 +48,12 @@
 </div>
 
 <!-- <div id="right-panel"></div> -->
-<div id="map" style="float:left; width:70%; height:100%"></div>
+<div id="map"></div>
+<br />
+<h5><div id="mode-type"></div></h5>
+<div id="right-panel">
+  <p>Please enter your starting address, destination, and click a travel mode icon above the map to see step by step directions.<p>
+</div>
 
 
 
@@ -51,7 +61,8 @@
     <script>
       var map;
       function initMap() {
-
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
         // map style from Adam Krogh, https://snazzymaps.com/style/2/midnight-commander.
 
         var mapStyle = [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}
@@ -66,38 +77,48 @@
         });
       }
 
+<<<<<<< HEAD
       // document.getElementById('mapit').addEventListener('click', function() {
       //     displayDirections();
       //   });
 
+=======
+      //click events for each of the icons. Need DRY up...
+>>>>>>> 23a22095bd5b393f656a633457803c75258d1a33
         document.getElementById('walk!').addEventListener('click', function() {
               var mode = "WALKING"
-              displayDirections(origin, mode);
+              var modeHumanName = "Walking"
+              displayDirections(mode, modeHumanName);
               console.log(mode + " selected")
         });
         document.getElementById('bike!').addEventListener('click', function() {
               var mode = "BICYCLING"
-              displayDirections(origin, mode);
+              var modeHumanName = "Biking"
+              displayDirections(mode, modeHumanName);
               console.log(mode + " selected")
         });
         document.getElementById('bikeshare!').addEventListener('click', function() {
               var mode = "BICYCLING"
-              displayDirections(origin, mode);
-              console.log(mode + " selected")
+              var modeHumanName = "Capital Bikeshare"
+              displayDirections(mode, modeHumanName);
+              console.log(mode + " " + modeHumanName + " selected")
         });
         document.getElementById('metro!').addEventListener('click', function() {
               var mode = "TRANSIT"
-              displayDirections(origin, mode);
+              var modeHumanName = "Metro"
+              displayDirections(mode, modeHumanName);
               console.log(mode + " selected")
         });
         document.getElementById('uber!').addEventListener('click', function() {
               var mode = "DRIVING"
-              displayDirections(origin, mode);
-              console.log(mode + " selected")
+              var modeHumanName = "Uber"
+              displayDirections(mode, modeHumanName);
+              console.log(mode + " " + modeHumanName + " selected")
         });
         document.getElementById('drive!').addEventListener('click', function() {
               var mode = "DRIVING"
-              displayDirections(origin, mode);
+              var modeHumanName = "Driving"
+              displayDirections(mode, modeHumanName);
               console.log(mode + " selected")
         });
         // document.getElementById('drive!').addEventListener('click', function() {
@@ -106,7 +127,7 @@
         // });
 
 
-        function displayDirections(origin, mode) {
+        function displayDirections(mode, modeHumanName) {
           var directionsService = new google.maps.DirectionsService;
           // Get the destination address from the user entered value.
           var originAddress =
@@ -117,11 +138,14 @@
 
           // Get mode again from the user entered value.
           // var mode = document.getElementById('mode').value;
-            console.log("console log of mode: " + mode)
+            console.log("console log of mode: " + mode + " " + modeHumanName)
 
           var strokeColorByMode = ''
 
-            if (mode === "DRIVING"){
+            if (mode === "DRIVING" && modeHumanName === "Uber"){
+              strokeColorByMode = 'blue'
+            }
+            else if (mode === "DRIVING"){
               strokeColorByMode = 'purple'
             }
             else if (mode === "WALKING") {
@@ -130,7 +154,12 @@
             else if (mode === "TRANSIT") {
               strokeColorByMode = 'green'
             }
-            else {strokeColorByMode = 'orange'}
+            else if (mode === "BICYCLING" && modeHumanName === "Capital Bikeshare") {
+              strokeColorByMode = 'yellow'
+            }
+            else if (mode == "BICYCLING"){
+              strokeColorByMode = 'orange'
+            }
 
           directionsService.route({
             // The origin is the passed in marker's position.
@@ -153,8 +182,10 @@
               window.alert('Directions request failed due to ' + status);
             }
           });
+          calculateAndDisplayRoute(directionsService, mode, modeHumanName)
         }
 
+<<<<<<< HEAD
         //not yet set up
         function calculateAndDisplayRoute(directionsService, directionsDisplay) {
                 var start = document.getElementById('origin').value;
@@ -171,7 +202,35 @@
                   }
                 });
               }
+=======
+        function calculateAndDisplayRoute(directionsService, mode, modeHumanName, map) {
+          var originAddress = document.getElementById('origin').value;
+          var destinationAddress = document.getElementById('destination').value;
+          var directionsService = new google.maps.DirectionsService;
+          var directionsDisplay = new google.maps.DirectionsRenderer;
+>>>>>>> 23a22095bd5b393f656a633457803c75258d1a33
 
+          document.getElementById('right-panel').innerHTML=''
+          document.getElementById('mode-type').innerHTML= modeHumanName + " Directions"
+          directionsDisplay.setMap(map);
+          // var BL = new google.maps.DirectionsService
+          // BL.setMap(null)
+          directionsDisplay.setPanel(document.getElementById('right-panel'));
+
+          directionsService.route({
+            origin: originAddress,
+            destination: destinationAddress,
+            travelMode: mode
+          }, function(response, status) {
+            if (status === 'OK') {
+              directionsDisplay.setDirections(response);
+              //not yet working; trying to grab and modify google-provided time to destination
+              // document.getElementsByClassName('adp-summary').innerHTML="500"
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+        }
 
 
     </script>

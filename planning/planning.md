@@ -33,11 +33,25 @@ Wednesday:
 * change colors for each route
 
 Thursday:
+<<<<<<< HEAD
 * get directions in view using DirectionsStep and DirectionsRenderer
 * add time and distance
 * remove bike map overlay
+=======
+* add routing directions
+* show most recent routing directions
+* add directions calcs on time, etc.
+* segment out uber and bikeshare
+
+>>>>>>> 23a22095bd5b393f656a633457803c75258d1a33
 
 Friday:
-* add IP detection
+* figure out right-side div css
+* find distance attribute and modify w/uber and bike share data
+* change top of step by step directions panel to name of mode
+* add IP detection?
 * make site responsive?
 * deploy as mobile app?
+
+Bugs/items to update:
+* When selecting same google transit mode, (drive versus uber) google will switch colors when clicking between the same mode. Clicking a new mode locks the last color in.
