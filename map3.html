@@ -13,20 +13,12 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
   <link rel="stylesheet" type="text/css" href="stylesheet0.css"></script>
-=======
-  <link rel="stylesheet" type="text/css" href="stylesheet.css"></sctipt>
->>>>>>> init commit for gh-pages
 
 </head>
 <body>
 
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
 <h3>Time2Go</h3>
-=======
-<h1>Time2Go</h1>
->>>>>>> init commit for gh-pages
 
 <div>
   <!-- add in IP/cell tower auto detect -->
@@ -38,24 +30,13 @@
   <!-- <input id="mapit" type="button" class="waves-effect waves-light btn" value="Let's go"> -->
 </div>
 
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
-<<<<<<< HEAD
-=======
 <!-- Add preferences for routing (weather, etc.) options here -->
 
->>>>>>> 23a22095bd5b393f656a633457803c75258d1a33
 <div name="route options">
   <ul>
     <a id="walk!" class="btn-floating red"><i class="material-icons">directions_walk</i></a>
     <a id="bikeshare!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a>
     <a id="bike!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a>
-=======
-<div name="route options">
-  <ul>
-    <a id="walk!" class="btn-floating red"><i class="material-icons">directions_walk</i></a>
-    <a id="bike!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a>
-    <a id="bikeshare!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a>
->>>>>>> init commit for gh-pages
     <a id="metro!" class="btn-floating green"><i class="material-icons">train</i></a>
     <a id="uber!" class="btn-floating blue"><i class="material-icons">event_seat</i></a>
     <a id="drive!" class="btn-floating purple"><i class="material-icons">drive_eta</i></a>
@@ -64,16 +45,12 @@
 </div>
 
 <!-- <div id="right-panel"></div> -->
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
 <div id="map"></div>
 <br />
 <h5><div id="mode-type"></div></h5>
 <div id="right-panel">
   <p>Please enter your starting address, destination, and click a travel mode icon above the map to see step by step directions.<p>
 </div>
-=======
-<div id="map" style="float:left; width:70%; height:100%"></div>
->>>>>>> init commit for gh-pages
 
 
 
@@ -81,12 +58,8 @@
     <script>
       var map;
       function initMap() {
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
-=======
-
->>>>>>> init commit for gh-pages
         // map style from Adam Krogh, https://snazzymaps.com/style/2/midnight-commander.
 
         var mapStyle = [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}
@@ -101,42 +74,21 @@
         });
       }
 
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
-<<<<<<< HEAD
-=======
->>>>>>> init commit for gh-pages
-      // document.getElementById('mapit').addEventListener('click', function() {
-      //     displayDirections();
-      //   });
-
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
-=======
       //click events for each of the icons. Need DRY up...
->>>>>>> 23a22095bd5b393f656a633457803c75258d1a33
         document.getElementById('walk!').addEventListener('click', function() {
               var mode = "WALKING"
               var modeHumanName = "Walking"
               displayDirections(mode, modeHumanName);
-=======
-        document.getElementById('walk!').addEventListener('click', function() {
-              var mode = "WALKING"
-              displayDirections(origin, mode);
->>>>>>> init commit for gh-pages
               console.log(mode + " selected")
         });
         document.getElementById('bike!').addEventListener('click', function() {
               var mode = "BICYCLING"
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
               var modeHumanName = "Biking"
               displayDirections(mode, modeHumanName);
-=======
-              displayDirections(origin, mode);
->>>>>>> init commit for gh-pages
               console.log(mode + " selected")
         });
         document.getElementById('bikeshare!').addEventListener('click', function() {
               var mode = "BICYCLING"
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
               var modeHumanName = "Capital Bikeshare"
               displayDirections(mode, modeHumanName);
               console.log(mode + " " + modeHumanName + " selected")
@@ -145,19 +97,10 @@
               var mode = "TRANSIT"
               var modeHumanName = "Metro"
               displayDirections(mode, modeHumanName);
-=======
-              displayDirections(origin, mode);
-              console.log(mode + " selected")
-        });
-        document.getElementById('metro!').addEventListener('click', function() {
-              var mode = "TRANSIT"
-              displayDirections(origin, mode);
->>>>>>> init commit for gh-pages
               console.log(mode + " selected")
         });
         document.getElementById('uber!').addEventListener('click', function() {
               var mode = "DRIVING"
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
               var modeHumanName = "Uber"
               displayDirections(mode, modeHumanName);
               console.log(mode + " " + modeHumanName + " selected")
@@ -166,27 +109,11 @@
               var mode = "DRIVING"
               var modeHumanName = "Driving"
               displayDirections(mode, modeHumanName);
-=======
-              displayDirections(origin, mode);
               console.log(mode + " selected")
         });
-        document.getElementById('drive!').addEventListener('click', function() {
-              var mode = "DRIVING"
-              displayDirections(origin, mode);
->>>>>>> init commit for gh-pages
-              console.log(mode + " selected")
-        });
-        // document.getElementById('drive!').addEventListener('click', function() {
-        //       clearDirections();
-        // directionDisplay.setMap(null);
-        // });
 
 
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
         function displayDirections(mode, modeHumanName) {
-=======
-        function displayDirections(origin, mode) {
->>>>>>> init commit for gh-pages
           var directionsService = new google.maps.DirectionsService;
           // Get the destination address from the user entered value.
           var originAddress =
@@ -197,7 +124,6 @@
 
           // Get mode again from the user entered value.
           // var mode = document.getElementById('mode').value;
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
             console.log("console log of mode: " + mode + " " + modeHumanName)
 
           var strokeColorByMode = ''
@@ -206,13 +132,6 @@
               strokeColorByMode = 'blue'
             }
             else if (mode === "DRIVING"){
-=======
-            console.log("console log of mode: " + mode)
-
-          var strokeColorByMode = ''
-
-            if (mode === "DRIVING"){
->>>>>>> init commit for gh-pages
               strokeColorByMode = 'purple'
             }
             else if (mode === "WALKING") {
@@ -221,16 +140,12 @@
             else if (mode === "TRANSIT") {
               strokeColorByMode = 'green'
             }
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
             else if (mode === "BICYCLING" && modeHumanName === "Capital Bikeshare") {
               strokeColorByMode = 'yellow'
             }
             else if (mode == "BICYCLING"){
               strokeColorByMode = 'orange'
             }
-=======
-            else {strokeColorByMode = 'orange'}
->>>>>>> init commit for gh-pages
 
           directionsService.route({
             // The origin is the passed in marker's position.
@@ -253,39 +168,14 @@
               window.alert('Directions request failed due to ' + status);
             }
           });
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
           calculateAndDisplayRoute(directionsService, mode, modeHumanName)
         }
 
-<<<<<<< HEAD
-=======
-        }
-
->>>>>>> init commit for gh-pages
-        //not yet set up
-        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-                var start = document.getElementById('origin').value;
-                var end = document.getElementById('destination').value;
-                directionsService.route({
-                  origin: start,
-                  destination: end,
-                  travelMode: 'DRIVING'
-                }, function(response, status) {
-                  if (status === 'OK') {
-                    directionsDisplay.setDirections(response);
-                  } else {
-                    window.alert('Directions request failed due to ' + status);
-                  }
-                });
-              }
-<<<<<<< d02ebd125b29fa780288a7d6d867df44b5ead0b9
-=======
         function calculateAndDisplayRoute(directionsService, mode, modeHumanName, map) {
           var originAddress = document.getElementById('origin').value;
           var destinationAddress = document.getElementById('destination').value;
           var directionsService = new google.maps.DirectionsService;
           var directionsDisplay = new google.maps.DirectionsRenderer;
->>>>>>> 23a22095bd5b393f656a633457803c75258d1a33
 
           document.getElementById('right-panel').innerHTML=''
           document.getElementById('mode-type').innerHTML= modeHumanName + " Directions"
@@ -308,9 +198,6 @@
             }
           });
         }
-=======
-
->>>>>>> init commit for gh-pages
 
 
     </script>
