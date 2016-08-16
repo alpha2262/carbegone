@@ -39,11 +39,11 @@ html, body {
       #right-panel {
         height: 100%;
         float: right;
-        width: 390px;
+        width: 360px;
         overflow: auto;
       }
       #map {
-        margin-right: 400px;
+        margin-right: 350px;
       }
       #floating-panel {
         background: #fff;

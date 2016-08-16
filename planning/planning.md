@@ -1,4 +1,5 @@
 
+Tuesday 8/16:
 * continue with directions API
   * if routing won't allow multiple selections without google layout, use directions and have each type of route option rendered?
   * change route options to toggles so a user can deselect the route option
