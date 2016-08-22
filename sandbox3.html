@@ -1,7 +1,3 @@
-secrets of the javascript ninja
-Jvascript jabber (podcast)
-Ruby Rouges (podcast)
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +13,7 @@ Ruby Rouges (podcast)
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="stylesheet0.css"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css"></script>
 
 </head>
 <body>
@@ -26,11 +22,11 @@ Ruby Rouges (podcast)
 
 <div>
   <!-- add in IP/cell tower auto detect -->
-  <input id="origin" type="text" placeholder="Where ya at?" value="General Assembly, Washington, DC">
+  <input id="origin" type="text" placeholder="Where ya at?" value="General Assembly, DC">
 </div>
 
 <div>
-  <input id="destination" type="text" placeholder="Where to?" value="Cleveland Park, DC">
+  <input id="destination" type="text" placeholder="Where to?" value="703 6th st NW, Washington, DC">
   <!-- <input id="mapit" type="button" class="waves-effect waves-light btn" value="Let's go"> -->
 </div>
 
@@ -38,22 +34,24 @@ Ruby Rouges (podcast)
 
 <div name="route options">
   <ul>
-    <a id="walk!" class="btn-floating red"><i class="material-icons">directions_walk</i></a>
-    <a id="bikeshare!" class="btn-floating yellow darken-1"><i class="material-icons">motorcycle</i></a>
-    <a id="bike!" class="btn-floating orange"><i class="material-icons">directions_bike</i></a>
-    <a id="metro!" class="btn-floating green"><i class="material-icons">train</i></a>
-    <a id="uber!" class="btn-floating blue"><i class="material-icons">event_seat</i></a>
-    <a id="drive!" class="btn-floating purple"><i class="material-icons">drive_eta</i></a>
-    <a id="info" class="btn-floating indigo "><i class="material-icons">info_outline</i></a>
+    <a id="walk!" class="btn-floating tooltipped red" data-position="top" data-delay="50" data-tooltip="Walk"><i class="material-icons">directions_walk</i></a>
+    <a id="bikeshare!" class="btn-floating tooltipped yellow darken-1" data-position="top" data-delay="50" data-tooltip="Captial Bikeshare"><i class="material-icons">motorcycle</i></a>
+    <a id="bike!" class="btn-floating tooltipped orange" data-position="top" data-delay="50" data-tooltip="Bike"><i class="material-icons">directions_bike</i></a>
+    <a id="metro!" class="btn-floating tooltipped green" data-position="top" data-delay="50" data-tooltip="Metro (rail and bus)"><i class="material-icons">train</i></a>
+    <a id="uber!" class="btn-floating tooltipped blue" data-position="top" data-delay="50" data-tooltip="Uber"><i class="material-icons">event_seat</i></a>
+    <a id="drive!" class="btn-floating tooltipped purple" data-position="top" data-delay="50" data-tooltip="Drive"><i class="material-icons">drive_eta</i></a>
+    <a id="info!" class="btn-floating tooltipped indigo " data-position="top" data-delay="50" data-tooltip="How to use: Select one or more route buttons. The most recently selected will display route options."><i class="material-icons">info_outline</i></a>
   </ul>
 </div>
 
+<!-- <div id="divUber">text</div> -->
+
+<h5><div id="mode-type"></h5> </div>
+<p>Please enter your starting address, destination, and click a travel mode icon above the map to see step by step directions.<p>
+<div id="right-panel"></div>
 <div id="map"></div>
-<br />
-<h5><div id="mode-type"></div></h5>
-<div id="right-panel">
-  <p>Please enter your starting address, destination, and click a travel mode icon above the map to see step by step directions.<p>
-</div>
+
+
 
 
 
@@ -195,13 +193,23 @@ Ruby Rouges (podcast)
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
               //not yet working; trying to grab and modify google-provided time to destination
-              // document.getElementsByClassName('adp-summary').innerHTML="500"
+
+              //experimenting!!
+              // var divOriginal = document.getElementsByClassName('adp-summary');
+              // divOriginal2 = divOriginal.find("min")
+
+              // console.log(divOriginal)
+              // var divNew = document.getElementById('divUber');
+              // divNew.innerHTML = divOriginal.innerText
+              // document.getElementById('adp-summary').innerHTML="500"
+              // console.log("div new: "+ divNew.innerHTML)
+              //experimenting!!
+
             } else {
               window.alert('Directions request failed due to ' + status);
             }
-          });
+          })
         }
-
 
     </script>
 
