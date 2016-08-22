@@ -1,8 +1,15 @@
 
-* continue with directions API
-  * if routing won't allow multiple selections without google layout, use directions and have each type of route option rendered?
-  * change route options to toggles so a user can deselect the route option
+8/23:
+* get map back up w/ toggle info buttons
 
+* fix adp.summary travel div (add uber and bikeshare time)
+* add weather and daylight options?
+* DRY up code
+* convert to angular front end?
+* fix directions div to not have scroll bar on mobile
+
+
+***
 Friday:
 * map out needed fields
 * stack decisions
@@ -52,6 +59,11 @@ Friday:
 * add IP detection?
 * make site responsive?
 * deploy as mobile app?
+* fitbit steps count
 
 Bugs/items to update:
-* When selecting same google transit mode, (drive versus uber) google will switch colors when clicking between the same mode. Clicking a new mode locks the last color in.
+* DONE When selecting same google transit mode, (drive versus uber) google will switch colors when clicking between the same mode. Clicking a new mode locks the last color in.
+* added time for travel into mode
+* continue with directions API
+  * if routing won't allow multiple selections without google layout, use directions and have each type of route option rendered?
+  * change route options to toggles so a user can deselect the route option
