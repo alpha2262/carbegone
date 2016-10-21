@@ -1,7 +1,10 @@
 
-8/23:
+To do:
 * get map back up w/ toggle info buttons
+* add wireframes
+* Fix weird lag time on multiple selections (e.g. bike and bikeshare); probably too many rapid calls to API?
 
+medium-priority:
 * fix adp.summary travel div (add uber and bikeshare time)
 * add weather and daylight options?
 * DRY up code
