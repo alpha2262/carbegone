@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
 </head>
 <body>
 
 <h3>Time2Go</h3>
 
 <div>
-  <!-- add in IP/cell tower auto detect for orgin-->
+  <!-- add in IP/cell tower auto detect for origin-->
   <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Enter a new starting location or try out the example provided!">
   <input id="origin" type="text" placeholder="Where ya at?" value="Cleveland Park, DC">
 </a>
@@ -32,7 +32,7 @@
     <a id="bikeshare!" class="btn-floating tooltipped yellow darken-1" data-position="top" data-delay="50" data-tooltip="Captial Bikeshare"><i class="material-icons">motorcycle</i></a>
     <a id="bike!" class="btn-floating tooltipped orange" data-position="top" data-delay="50" data-tooltip="Bike"><i class="material-icons">directions_bike</i></a>
     <a id="metro!" class="btn-floating tooltipped green" data-position="top" data-delay="50" data-tooltip="Metro (rail and bus)"><i class="material-icons">train</i></a>
-    <a id="uber!" class="btn-floating tooltipped blue" data-position="top" data-delay="50" data-tooltip="Uber"><i class="material-icons">event_seat</i></a>
+    <a id="uber!" class="btn-floating tooltipped blue" data-position="top" data-delay="50" data-tooltip="Uber or Lyft"><i class="material-icons">event_seat</i></a>
     <a id="drive!" class="btn-floating tooltipped purple" data-position="top" data-delay="50" data-tooltip="Drive"><i class="material-icons">drive_eta</i></a>
     <a id="info!" class="btn-floating tooltipped indigo " data-position="top" data-delay="50" data-tooltip="How to use: Select one or more route buttons. The most recently selected will display route options."><i class="material-icons">info_outline</i></a>
 </div>
@@ -43,6 +43,8 @@
 <p>Please enter your starting address, destination, and click a travel mode icon above the map to see step by step directions.<p>
 <div id="right-panel"></div>
 <div id="map"></div>
+
+<!-- switch over here down to JS file -->
 
     <script>
       var map;
@@ -89,7 +91,7 @@
         });
         document.getElementById('uber!').addEventListener('click', function() {
               var mode = "DRIVING"
-              var modeHumanName = "Uber"
+              var modeHumanName = "Uber or Lyft"
               displayDirections(mode, modeHumanName);
               console.log(mode + " " + modeHumanName + " selected")
         });
